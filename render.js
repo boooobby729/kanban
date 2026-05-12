@@ -356,7 +356,7 @@ function renderTable(){
     var imgsH='';
     if(imgs.length>0){
       imgs.forEach(function(src){
-        imgsH+='<div class="pp-thumb"><img src="'+src+'" loading="lazy"></div>';
+        imgsH+='<div class="pp-thumb"><img src="'+src+'"></div>';
       });
     } else {
       imgsH='<div class="pp-thumb-ph">'+r.icon+'</div>';
@@ -471,7 +471,7 @@ function renderDetail(){
       var imgsAttr=JSON.stringify(imgs).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
       imgs.forEach(function(src,idx){
         imgsH+='<div class="d-thumb" data-imgs="'+imgsAttr+'" data-idx="'+idx+'" onclick="openLightbox(JSON.parse(this.dataset.imgs),+this.dataset.idx)">'+
-          '<img src="'+src+'" loading="lazy">'+
+          '<img src="'+src+'">'+
           (imgs.length>1?'<div class="d-thumb-label">'+(idx+1)+'</div>':'')+
         '</div>';
       });

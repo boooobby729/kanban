@@ -17,7 +17,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Helveti
 .sticky-hd::after{content:'';position:absolute;bottom:0;left:-32px;right:-32px;height:1px;background:var(--border-light)}
 .hd-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .hd-l{display:flex;align-items:center;gap:12px}
-.logo{width:32px;height:32px;background:var(--orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;color:#fff}
+.logo{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px}
 .hd-title{font-size:16px;font-weight:700;letter-spacing:-.3px}
 .hd-actions{display:flex;align-items:center;gap:8px}
 .hd-btn{display:flex;align-items:center;gap:5px;padding:6px 14px;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:12px;font-weight:500;border-radius:8px;cursor:pointer;transition:.15s;font-family:inherit}
@@ -307,7 +307,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Helveti
   <!-- Sticky Header -->
   <div class="sticky-hd">
     <div class="hd-row">
-      <div class="hd-l"><div class="logo">V</div><div class="hd-title">资源位数据看板</div></div>
+      <div class="hd-l"><div class="logo">🎯</div><div class="hd-title">资源位数据看板</div><span style="margin-left:12px;padding:3px 10px;background:#fef2f2;border:1px solid #fecaca;border-radius:6px;font-size:12px;font-weight:500;color:#dc2626">⚠️ 注意：核心示意思路，数据都是虚构的！</span></div>
       <div class="hd-actions">
         <button class="hd-btn" onclick="exportCSV()" title="导出数据">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
@@ -917,7 +917,7 @@ function renderTable(){
     var imgsH='';
     if(imgs.length>0){
       imgs.forEach(function(src){
-        imgsH+='<div class="pp-thumb"><img src="'+src+'" loading="lazy"></div>';
+        imgsH+='<div class="pp-thumb"><img src="'+src+'"></div>';
       });
     } else {
       imgsH='<div class="pp-thumb-ph">'+r.icon+'</div>';
@@ -1032,7 +1032,7 @@ function renderDetail(){
     if(imgs.length>0){
       imgs.forEach(function(src,idx){
         imgsH+='<div class="d-thumb" data-imgs="'+imgsAttr+'" data-idx="'+idx+'" onclick="openLightbox(JSON.parse(this.dataset.imgs),+this.dataset.idx)">'+
-          '<img src="'+src+'" loading="lazy">'+
+          '<img src="'+src+'">'+
           (imgs.length>1?'<div class="d-thumb-label">'+(idx+1)+'</div>':'')+
         '</div>';
       });
@@ -1195,37 +1195,32 @@ function showToast(msg){
 var _lbImgs=[],_lbIdx=0;
 function openLightbox(imgs,idx){
   _lbImgs=imgs;_lbIdx=idx||0;
-  _lbShow();
   document.getElementById('lightbox').classList.add('show');
   document.body.style.overflow='hidden';
+  _lbShow();
 }
 function _lbShow(){
-  var img=document.getElementById('lbImg');
-  img.src=_lbImgs[_lbIdx];
+  document.getElementById('lbImg').src=_lbImgs[_lbIdx];
+  var counter=document.getElementById('lbCounter');
   var prev=document.getElementById('lbPrev');
   var next=document.getElementById('lbNext');
-  var counter=document.getElementById('lbCounter');
-  if(_lbImgs.length<=1){
-    prev.classList.add('hide');next.classList.add('hide');
-    counter.textContent='';
-  } else {
-    prev.classList.toggle('hide',_lbIdx===0);
-    next.classList.toggle('hide',_lbIdx===_lbImgs.length-1);
+  if(prev) prev.style.display=_lbImgs.length>1?'flex':'none';
+  if(next) next.style.display=_lbImgs.length>1?'flex':'none';
+  if(counter){
+    counter.style.display=_lbImgs.length>1?'block':'none';
     counter.textContent=(_lbIdx+1)+' / '+_lbImgs.length;
   }
 }
 function lbGo(dir){
-  var n=_lbIdx+dir;
-  if(n<0||n>=_lbImgs.length) return;
-  _lbIdx=n;_lbShow();
+  _lbIdx=(_lbIdx+dir+_lbImgs.length)%_lbImgs.length;
+  _lbShow();
 }
 function lbClickBg(e){
-  if(e.target===document.getElementById('lightbox')) closeLightbox();
+  if(e.target===e.currentTarget) closeLightbox();
 }
 function closeLightbox(){
   document.getElementById('lightbox').classList.remove('show');
   document.body.style.overflow='';
-  _lbImgs=[];_lbIdx=0;
 }
 
 /* ===== Time Switch ===== */
