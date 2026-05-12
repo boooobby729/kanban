@@ -364,7 +364,7 @@ function renderTable(){
 
     var copySvg='<svg class="pp-copy-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>';
     var pp='<div class="pp-card" onmouseenter="ppEnterCard(this)" onmouseleave="ppLeaveCard(this)">';
-    pp+='<div class="pp-header"><div class="pp-info"><span class="pp-name">'+r.name+'<span class="pp-copy-btn" onclick="event.stopPropagation();copyName(this,\''+r.name+'\')">' +copySvg+'</span></span><span class="pp-badge '+r.cls+'">'+r.cat+'</span></div></div>';
+    pp+='<div class="pp-header"><div class="pp-info"><span class="pp-name">'+r.name+'</span><span class="pp-badge '+r.cls+'">'+r.cat+'</span></div></div>';
     pp+='<div class="pp-desc">'+r.desc+'</div>';
     /* enter/exit scene */
     if(r.enter||r.exit){
@@ -468,8 +468,9 @@ function renderDetail(){
     var imgs=r.imgs||[];
     var imgsH='';
     if(imgs.length>0){
+      var imgsAttr=JSON.stringify(imgs).replace(/&/g,'&amp;').replace(/"/g,'&quot;');
       imgs.forEach(function(src,idx){
-        imgsH+='<div class="d-thumb" onclick="openLightbox(\''+src+'\')">'+
+        imgsH+='<div class="d-thumb" data-imgs="'+imgsAttr+'" data-idx="'+idx+'" onclick="openLightbox(JSON.parse(this.dataset.imgs),+this.dataset.idx)">'+
           '<img src="'+src+'" loading="lazy">'+
           (imgs.length>1?'<div class="d-thumb-label">'+(idx+1)+'</div>':'')+
         '</div>';
@@ -629,18 +630,34 @@ function showToast(msg){
   _toastTimer=setTimeout(function(){t.classList.remove('show');},1800);
 }
 
-/* ===== Lightbox ===== */
-function openLightbox(src){
-  var lb=document.getElementById('lightbox');
-  var img=document.getElementById('lbImg');
-  img.src=src;
-  lb.classList.add('show');
+/* ===== Lightbox Gallery ===== */
+var _lbImgs=[],_lbIdx=0;
+function openLightbox(imgs,idx){
+  _lbImgs=imgs;_lbIdx=idx||0;
+  document.getElementById('lightbox').classList.add('show');
   document.body.style.overflow='hidden';
+  _lbShow();
+}
+function _lbShow(){
+  document.getElementById('lbImg').src=_lbImgs[_lbIdx];
+  var counter=document.getElementById('lbCounter');
+  if(counter) counter.textContent=(_lbIdx+1)+' / '+_lbImgs.length;
+  var prev=document.getElementById('lbPrev');
+  var next=document.getElementById('lbNext');
+  if(prev) prev.style.display=_lbImgs.length>1?'flex':'none';
+  if(next) next.style.display=_lbImgs.length>1?'flex':'none';
+  if(counter) counter.style.display=_lbImgs.length>1?'block':'none';
+}
+function lbGo(dir){
+  _lbIdx=(_lbIdx+dir+_lbImgs.length)%_lbImgs.length;
+  _lbShow();
 }
 function closeLightbox(){
-  var lb=document.getElementById('lightbox');
-  lb.classList.remove('show');
+  document.getElementById('lightbox').classList.remove('show');
   document.body.style.overflow='';
+}
+function lbClickBg(e){
+  if(e.target===e.currentTarget) closeLightbox();
 }
 
 /* ===== Time Switch ===== */
@@ -667,6 +684,14 @@ function refreshAll(){
 /* ===== Keyboard Shortcuts ===== */
 document.addEventListener('keydown',function(e){
   if(e.target.tagName==='INPUT') return;
+  /* lightbox navigation */
+  var lb=document.getElementById('lightbox');
+  if(lb&&lb.classList.contains('show')){
+    if(e.key==='Escape') closeLightbox();
+    if(e.key==='ArrowLeft') lbGo(-1);
+    if(e.key==='ArrowRight') lbGo(1);
+    return;
+  }
   if(e.key==='1') switchTab('overview');
   if(e.key==='2') switchTab('detail');
   if(e.key==='e'&&(e.metaKey||e.ctrlKey)){e.preventDefault();exportCSV();}
