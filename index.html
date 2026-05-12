@@ -191,7 +191,7 @@ body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Helveti
 .pp-thumb-ph{width:96px;height:168px;border-radius:8px;background:var(--surface2);border:1.5px dashed var(--border);display:flex;align-items:center;justify-content:center;font-size:20px;opacity:.4}
 
 /* Detail Tab */
-.detail-filter{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;position:sticky;top:0;z-index:50;background:var(--bg);padding:16px 0;margin-top:-16px}
+.detail-filter{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap;position:sticky;top:var(--sticky-hd-h,122px);z-index:50;background:var(--bg);padding:12px 0 16px;margin-top:-12px;border-bottom:1px solid var(--border-light)}
 .filter-btn{padding:6px 16px;border:1px solid var(--border);background:var(--surface);color:var(--text2);font-size:12px;font-weight:500;border-radius:20px;cursor:pointer;transition:.15s;font-family:inherit}
 .filter-btn:hover{border-color:var(--text3);color:var(--text)}
 .filter-btn.on{background:var(--text);color:#fff;border-color:var(--text)}
@@ -1266,8 +1266,14 @@ if(e.key==='e'&&(e.metaKey||e.ctrlKey)){e.preventDefault();exportCSV();}
 });
 
 /* ===== Init ===== */
+/* set sticky header height CSS var for detail filter sticky offset */
+function updateStickyHdVar(){
+  var hd=document.querySelector('.sticky-hd');
+  if(hd) document.documentElement.style.setProperty('--sticky-hd-h',hd.offsetHeight+'px');
+}
+updateStickyHdVar();
 renderOV();renderChartArea();renderTable();
-window.addEventListener('resize',function(){resizeAllCharts();});
+window.addEventListener('resize',function(){resizeAllCharts();updateStickyHdVar();});
 
 </script>
 </body>
