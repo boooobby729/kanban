@@ -19,6 +19,8 @@ button { border: none; cursor: pointer; font-family: inherit; }
   --orange: #FF6B35; --orange-light: #FFF3ED;
   --green: #00C48C; --green-light: #E6FAF3;
   --purple: #7B61FF; --purple-light: #F0EDFF;
+  --pink: #FF4081; --pink-light: #FFF0F5;
+  --cyan: #00BCD4; --cyan-light: #E0F7FA;
   --gray-50: #FAFBFC; --gray-100: #F4F5F7; --gray-200: #E8EAED;
   --gray-400: #9AA0A6; --gray-600: #5F6368; --gray-800: #2D2D3A; --gray-900: #1a1a2e;
   --radius: 16px; --radius-lg: 24px;
@@ -40,7 +42,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
   font-size: 42px; font-weight: 700; line-height: 1.25;
   color: var(--gray-900); margin-bottom: 16px; letter-spacing: -0.5px;
 }
-.section-desc { font-size: 18px; color: var(--gray-600); max-width: 640px; line-height: 1.7; }
+.section-desc { font-size: 18px; color: var(--gray-600); max-width: 680px; line-height: 1.7; }
 
 /* ===== Nav ===== */
 .nav {
@@ -58,7 +60,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-size: 16px; font-weight: 800;
 }
-.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
 .nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
 .nav-links a:hover { color: var(--blue); }
 .nav-cta {
@@ -107,7 +109,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .hero-title span { color: var(--blue); }
 .hero-subtitle {
   font-size: 20px; color: var(--gray-600); line-height: 1.7;
-  margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;
+  margin-bottom: 40px; max-width: 620px; margin-left: auto; margin-right: auto;
 }
 .hero-actions { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; }
 .btn-primary {
@@ -136,9 +138,11 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .stat-card:nth-child(4) .stat-number { color: var(--purple); }
 .stat-label { font-size: 14px; color: var(--gray-600); font-weight: 500; }
 
+/* ===== Section header helpers ===== */
+.section-header { text-align: center; margin-bottom: 72px; }
+.section-header .section-desc { margin: 0 auto; }
+
 /* ===== Solutions ===== */
-.solutions-header { text-align: center; margin-bottom: 72px; }
-.solutions-header .section-desc { margin: 0 auto; }
 .solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .solution-card {
   background: #fff; border-radius: var(--radius-lg); overflow: hidden;
@@ -146,7 +150,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
 }
 .solution-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
 .solution-visual {
-  height: 200px; display: flex; align-items: center; justify-content: center; font-size: 64px;
+  height: 180px; display: flex; align-items: center; justify-content: center; font-size: 56px;
 }
 .solution-card:nth-child(1) .solution-visual { background: linear-gradient(135deg, #EBF0FF, #D6E0FF); }
 .solution-card:nth-child(2) .solution-visual { background: linear-gradient(135deg, #FFF3ED, #FFE0CC); }
@@ -156,9 +160,9 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .solution-card:nth-child(1) .solution-type { color: var(--blue); }
 .solution-card:nth-child(2) .solution-type { color: var(--orange); }
 .solution-card:nth-child(3) .solution-type { color: var(--green); }
-.solution-body h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-.solution-pain { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; flex: 1; }
-.solution-highlights { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.solution-body h3 { font-size: 20px; font-weight: 700; margin-bottom: 12px; }
+.solution-pain { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 16px; padding: 12px 16px; background: var(--gray-50); border-radius: 10px; font-style: italic; }
+.solution-highlights { display: flex; flex-direction: column; gap: 8px; margin-bottom: 20px; flex: 1; }
 .solution-highlight {
   display: flex; align-items: flex-start; gap: 10px;
   font-size: 14px; color: var(--gray-800); font-weight: 500;
@@ -171,85 +175,116 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .solution-card:nth-child(1) .solution-highlight::before { background: var(--blue-light); color: var(--blue); }
 .solution-card:nth-child(2) .solution-highlight::before { background: var(--orange-light); color: var(--orange); }
 .solution-card:nth-child(3) .solution-highlight::before { background: var(--green-light); color: var(--green); }
-.solution-link { font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
-.solution-card:nth-child(1) .solution-link { color: var(--blue); }
-.solution-card:nth-child(2) .solution-link { color: var(--orange); }
-.solution-card:nth-child(3) .solution-link { color: var(--green); }
-.solution-link:hover { gap: 12px; }
-.solution-ease {
-  display: inline-flex; align-items: center; gap: 6px;
-  font-size: 12px; font-weight: 600; color: var(--gray-400);
-  margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--gray-200);
+.solution-result {
+  display: flex; gap: 16px; padding-top: 16px; border-top: 1px solid var(--gray-200); margin-top: auto;
 }
-.solution-ease::before {
-  content: '⚡'; font-size: 14px;
+.solution-result-item { text-align: center; flex: 1; }
+.solution-result-value { font-size: 20px; font-weight: 800; }
+.solution-card:nth-child(1) .solution-result-value { color: var(--blue); }
+.solution-card:nth-child(2) .solution-result-value { color: var(--orange); }
+.solution-card:nth-child(3) .solution-result-value { color: var(--green); }
+.solution-result-label { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+
+/* ===== Core Capabilities (Tabbed) ===== */
+.capabilities { background: var(--gray-50); }
+.cap-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 56px; flex-wrap: wrap; }
+.cap-tab {
+  padding: 10px 24px; border-radius: 50px; font-size: 14px; font-weight: 600;
+  background: #fff; color: var(--gray-600); border: 1px solid var(--gray-200);
+  cursor: pointer; transition: all 0.3s;
+}
+.cap-tab:hover { border-color: var(--blue); color: var(--blue); }
+.cap-tab.active { background: var(--blue); color: #fff; border-color: var(--blue); }
+.cap-panel { display: none; }
+.cap-panel.active { display: block; }
+
+/* Capability detail cards */
+.cap-detail { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+.cap-detail-main {
+  background: #fff; border-radius: var(--radius-lg); padding: 48px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.cap-detail-main h3 { font-size: 28px; font-weight: 700; margin-bottom: 16px; }
+.cap-detail-main > p { font-size: 16px; color: var(--gray-600); line-height: 1.8; margin-bottom: 28px; }
+.cap-feature-list { display: flex; flex-direction: column; gap: 16px; }
+.cap-feature-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  padding: 16px 20px; background: var(--gray-50); border-radius: 12px;
+}
+.cap-feature-icon {
+  width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 16px;
+}
+.cap-feature-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 4px; }
+.cap-feature-item p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+.cap-detail-side { display: flex; flex-direction: column; gap: 20px; }
+.cap-stat-card {
+  background: #fff; border-radius: var(--radius); padding: 28px;
+  border: 1px solid rgba(0,0,0,0.04); text-align: center;
+}
+.cap-stat-card .stat-number { font-size: 32px; font-weight: 800; margin-bottom: 6px; }
+.cap-stat-card .stat-label { font-size: 13px; color: var(--gray-600); }
+.cap-spec-list {
+  background: #fff; border-radius: var(--radius); padding: 28px;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+.cap-spec-list h4 { font-size: 14px; font-weight: 700; margin-bottom: 16px; color: var(--gray-800); }
+.cap-spec-item {
+  display: flex; align-items: center; gap: 10px; padding: 8px 0;
+  font-size: 13px; color: var(--gray-600); border-bottom: 1px solid var(--gray-100);
+}
+.cap-spec-item:last-child { border-bottom: none; }
+.cap-spec-dot {
+  width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0;
 }
 
-/* ===== Features ===== */
-.features { background: var(--gray-50); }
-.features-header { text-align: center; margin-bottom: 72px; }
-.features-header .section-desc { margin: 0 auto; }
-.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-.feature-card {
-  background: #fff; border-radius: var(--radius-lg); padding: 48px;
-  border: 1px solid rgba(0,0,0,0.04); transition: all 0.4s ease; overflow: hidden;
+/* ===== Livestream Room Showcase ===== */
+.room-showcase { }
+.room-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.room-category {
+  background: #fff; border-radius: var(--radius-lg); padding: 36px;
+  border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s;
 }
-.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
-.feature-icon {
-  width: 56px; height: 56px; border-radius: 14px;
-  display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;
+.room-category:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.room-category-icon { font-size: 32px; margin-bottom: 16px; }
+.room-category h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.room-category > p { font-size: 14px; color: var(--gray-600); margin-bottom: 20px; line-height: 1.6; }
+.room-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.room-item {
+  font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px;
 }
-.feature-card:nth-child(1) .feature-icon { background: var(--blue-light); }
-.feature-card:nth-child(2) .feature-icon { background: var(--orange-light); }
-.feature-card:nth-child(3) .feature-icon { background: var(--green-light); }
-.feature-card:nth-child(4) .feature-icon { background: var(--purple-light); }
-.feature-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
-.feature-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; margin-bottom: 24px; }
-.feature-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.feature-tag { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; }
-.feature-card:nth-child(1) .feature-tag { background: var(--blue-light); color: var(--blue); }
-.feature-card:nth-child(2) .feature-tag { background: var(--orange-light); color: var(--orange); }
-.feature-card:nth-child(3) .feature-tag { background: var(--green-light); color: var(--green); }
-.feature-card:nth-child(4) .feature-tag { background: var(--purple-light); color: var(--purple); }
 
 /* ===== Cases ===== */
-.cases { background: var(--gray-50); }
-.cases-header { text-align: center; margin-bottom: 72px; }
-.cases-header .section-desc { margin: 0 auto; }
 .cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .case-card {
-  background: #fff; border-radius: var(--radius-lg); padding: 40px;
+  background: #fff; border-radius: var(--radius-lg); padding: 36px;
   border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s ease;
 }
 .case-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-.case-industry { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--blue); margin-bottom: 16px; }
+.case-industry { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--blue); margin-bottom: 12px; }
 .case-card:nth-child(2) .case-industry { color: var(--orange); }
 .case-card:nth-child(3) .case-industry { color: var(--green); }
-.case-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
-.case-metrics { display: flex; gap: 24px; margin-bottom: 20px; }
-.case-metric-value { font-size: 28px; font-weight: 800; color: var(--blue); letter-spacing: -1px; }
+.case-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 16px; }
+.case-metrics { display: flex; gap: 20px; margin-bottom: 16px; }
+.case-metric-value { font-size: 26px; font-weight: 800; color: var(--blue); letter-spacing: -1px; }
 .case-card:nth-child(2) .case-metric-value { color: var(--orange); }
 .case-card:nth-child(3) .case-metric-value { color: var(--green); }
-.case-metric-label { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.case-metric-label { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+.case-desc { font-size: 14px; color: var(--gray-600); line-height: 1.7; }
 .case-quote {
-  font-size: 14px; color: var(--gray-800); line-height: 1.7;
-  padding: 16px 20px; background: var(--gray-50); border-radius: 12px;
-  margin-top: 20px; border-left: 3px solid var(--blue);
-  font-style: italic; position: relative;
+  font-size: 13px; color: var(--gray-800); line-height: 1.7;
+  padding: 14px 18px; background: var(--gray-50); border-radius: 10px;
+  margin-top: 16px; border-left: 3px solid var(--blue); font-style: italic;
 }
 .case-card:nth-child(2) .case-quote { border-left-color: var(--orange); }
 .case-card:nth-child(3) .case-quote { border-left-color: var(--green); }
-.case-quote-author {
-  font-size: 12px; color: var(--gray-400); font-style: normal;
-  margin-top: 8px; font-weight: 600;
-}
+.case-quote-author { font-size: 11px; color: var(--gray-400); font-style: normal; margin-top: 6px; font-weight: 600; }
 
 /* ===== Pricing ===== */
-.pricing-header { text-align: center; margin-bottom: 72px; }
-.pricing-header .section-desc { margin: 0 auto; }
 .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .pricing-card {
-  background: #fff; border-radius: var(--radius-lg); padding: 40px;
+  background: #fff; border-radius: var(--radius-lg); padding: 36px;
   border: 2px solid var(--gray-200); transition: all 0.3s ease; display: flex; flex-direction: column;
 }
 .pricing-card.featured {
@@ -262,40 +297,45 @@ button { border: none; cursor: pointer; font-family: inherit; }
   border-radius: 0 0 8px 8px; font-size: 12px; font-weight: 700;
 }
 .pricing-card:hover { transform: translateY(-4px); }
-.pricing-name { font-size: 14px; font-weight: 700; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
-.pricing-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
-.pricing-desc { font-size: 14px; color: var(--gray-600); margin-bottom: 24px; line-height: 1.6; }
+.pricing-name { font-size: 13px; font-weight: 700; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
+.pricing-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+.pricing-desc { font-size: 14px; color: var(--gray-600); margin-bottom: 20px; line-height: 1.6; }
 .pricing-price {
-  font-size: 14px; color: var(--gray-600); margin-bottom: 32px;
-  padding-bottom: 32px; border-bottom: 1px solid var(--gray-200);
+  font-size: 14px; color: var(--gray-600); margin-bottom: 28px;
+  padding-bottom: 28px; border-bottom: 1px solid var(--gray-200);
 }
-.pricing-price strong { font-size: 36px; font-weight: 800; color: var(--gray-900); letter-spacing: -1px; }
+.pricing-price strong { font-size: 32px; font-weight: 800; color: var(--gray-900); letter-spacing: -1px; }
 .pricing-price .price-sub { font-size: 13px; color: var(--green); font-weight: 600; display: block; margin-top: 4px; }
-.pricing-features { list-style: none; flex: 1; margin-bottom: 32px; }
+.pricing-features { list-style: none; flex: 1; margin-bottom: 28px; }
 .pricing-features li {
-  font-size: 14px; color: var(--gray-600); padding: 8px 0;
+  font-size: 13px; color: var(--gray-600); padding: 7px 0;
   display: flex; align-items: center; gap: 10px;
 }
-.pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 13px; }
+.pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 12px; }
 .pricing-btn {
   width: 100%; padding: 14px; border-radius: 12px;
   font-size: 15px; font-weight: 600; text-align: center; transition: all 0.3s; display: block;
 }
 .pricing-btn-outline { background: var(--gray-100); color: var(--gray-800); }
 .pricing-btn-outline:hover { background: var(--gray-200); }
-.pricing-btn-primary {
-  background: var(--blue); color: #fff; box-shadow: 0 4px 15px rgba(51,102,255,0.3);
+.pricing-btn-primary { background: var(--blue); color: #fff; box-shadow: 0 4px 15px rgba(51,102,255,0.3); }
+.pricing-btn-primary:hover { background: var(--blue-dark); }
+.pricing-btn-green { background: var(--green); color: #fff; box-shadow: 0 4px 15px rgba(0,196,140,0.3); }
+.pricing-btn-green:hover { background: #00A876; }
+
+/* ===== Roadmap ===== */
+.roadmap { background: var(--gray-50); }
+.roadmap-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 20px; }
+.roadmap-card {
+  background: #fff; border-radius: var(--radius); padding: 28px 20px;
+  border: 1px solid rgba(0,0,0,0.04); text-align: center; transition: all 0.3s;
 }
-.pricing-btn-primary:hover { background: var(--blue-dark); box-shadow: 0 8px 25px rgba(51,102,255,0.4); }
-.pricing-btn-green {
-  background: var(--green); color: #fff; box-shadow: 0 4px 15px rgba(0,196,140,0.3);
-}
-.pricing-btn-green:hover { background: #00A876; box-shadow: 0 8px 25px rgba(0,196,140,0.4); }
+.roadmap-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.roadmap-icon { font-size: 32px; margin-bottom: 14px; }
+.roadmap-card h4 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.roadmap-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
 
 /* ===== Steps ===== */
-.steps { background: var(--gray-50); }
-.steps-header { text-align: center; margin-bottom: 72px; }
-.steps-header .section-desc { margin: 0 auto; }
 .steps-track {
   display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
   position: relative; max-width: 1000px; margin: 0 auto;
@@ -314,7 +354,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .step-item:nth-child(2) .step-number { border-color: var(--orange); color: var(--orange); box-shadow: 0 4px 15px rgba(255,107,53,0.15); }
 .step-item:nth-child(3) .step-number { border-color: var(--green); color: var(--green); box-shadow: 0 4px 15px rgba(0,196,140,0.15); }
 .step-item:nth-child(4) .step-number { border-color: var(--purple); color: var(--purple); box-shadow: 0 4px 15px rgba(123,97,255,0.15); }
-.step-item:nth-child(5) .step-number { border-color: #FF4081; color: #FF4081; box-shadow: 0 4px 15px rgba(255,64,129,0.15); }
+.step-item:nth-child(5) .step-number { border-color: var(--pink); color: var(--pink); box-shadow: 0 4px 15px rgba(255,64,129,0.15); }
 .step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
 .step-desc { font-size: 13px; color: var(--gray-600); line-height: 1.6; padding: 0 8px; }
 
@@ -358,10 +398,15 @@ button { border: none; cursor: pointer; font-family: inherit; }
 .fade-up.visible { opacity: 1; transform: translateY(0); }
 
 /* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .cap-detail { grid-template-columns: 1fr; }
+  .roadmap-grid { grid-template-columns: repeat(3, 1fr); }
+}
 @media (max-width: 900px) {
   .hero-title { font-size: 36px; }
   .hero-stats { grid-template-columns: repeat(2, 1fr); }
-  .features-grid, .solutions-grid, .cases-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .solutions-grid, .cases-grid, .pricing-grid, .room-grid { grid-template-columns: 1fr; }
+  .roadmap-grid { grid-template-columns: 1fr 1fr; }
   .steps-track { grid-template-columns: 1fr; gap: 32px; }
   .steps-track::before { display: none; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
@@ -370,6 +415,8 @@ button { border: none; cursor: pointer; font-family: inherit; }
   .container { padding: 0 20px; }
   .nav-links { display: none; }
   .hero-actions { flex-direction: column; align-items: center; }
+  .cap-tabs { gap: 6px; }
+  .cap-tab { padding: 8px 16px; font-size: 12px; }
 }
 </style>
 </head>
@@ -384,178 +431,571 @@ button { border: none; cursor: pointer; font-family: inherit; }
     </a>
     <div class="nav-links">
       <a href="#solutions">解决方案</a>
-      <a href="#features">产品能力</a>
+      <a href="#capabilities">核心能力</a>
+      <a href="#room">直播间展示</a>
       <a href="#cases">客户案例</a>
       <a href="#pricing">版本价格</a>
-      <a href="#steps">开播指引</a>
+      <a href="#roadmap">迭代计划</a>
       <a href="#cta" class="nav-cta">免费体验</a>
     </div>
   </div>
 </nav>
 
-<!-- Hero：文案改为结果导向 -->
+<!-- Hero -->
 <section class="hero" id="hero">
   <div class="container">
     <div class="hero-content">
       <div class="hero-badge">美团数字人直播 全新升级</div>
       <h1 class="hero-title">让每家店都有<br>自己的 <span>24 小时主播</span></h1>
-      <p class="hero-subtitle">直播成本降低 65%，曝光提升 60%，不用招人不用盯。<br>3 分钟开播，AI 帮你从早播到晚。</p>
+      <p class="hero-subtitle">通过 AI 技术实现"无人化"或"半无人化"直播，直播成本降低 65%，全时段曝光提升 60%。3 分钟开播，从"形象展示"到"智能运营"全链路覆盖。</p>
       <div class="hero-actions">
         <a href="#cta" class="btn-primary">免费体验 →</a>
         <a href="#solutions" class="btn-outline">找到我的方案 ↓</a>
       </div>
       <div class="hero-stats">
         <div class="stat-card fade-up">
-          <div class="stat-number">-65%</div>
-          <div class="stat-label">直播运营成本</div>
+          <div class="stat-number">300+</div>
+          <div class="stat-label">数字人形象</div>
         </div>
         <div class="stat-card fade-up">
-          <div class="stat-number">+75%</div>
-          <div class="stat-label">日均直播时长</div>
+          <div class="stat-number">7×24h</div>
+          <div class="stat-label">不间断直播</div>
         </div>
         <div class="stat-card fade-up">
           <div class="stat-number">3 min</div>
-          <div class="stat-label">从零到开播</div>
+          <div class="stat-label">快速开播</div>
         </div>
         <div class="stat-card fade-up">
-          <div class="stat-number">300+</div>
-          <div class="stat-label">真人形象可选</div>
+          <div class="stat-number">201+</div>
+          <div class="stat-label">装修模板</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Solutions：提前到产品能力之前，加入「开播简单」暗示 -->
+<!-- Solutions -->
 <section class="section" id="solutions">
   <div class="container">
-    <div class="solutions-header">
+    <div class="section-header">
       <div class="section-label">解决方案</div>
-      <h2 class="section-title">找到你的方案，立刻开播</h2>
-      <p class="section-desc">不管你是连锁品牌还是社区小店，都有一套为你量身定制的数字人直播方案。</p>
+      <h2 class="section-title">阶梯化方案，精准匹配你的需求</h2>
+      <p class="section-desc">针对不同商家的差异化需求，提供三级阶梯式解决方案。从零门槛开播到品牌深度定制，找到最适合你的那一档。</p>
     </div>
     <div class="solutions-grid">
       <div class="solution-card fade-up">
         <div class="solution-visual">🏢</div>
         <div class="solution-body">
-          <div class="solution-type">品牌商家</div>
-          <h3>高品质品牌直播间</h3>
-          <p class="solution-pain">投入大、主播管理难、品牌调性难统一？高阶版数字人帮你打造与品牌完美匹配的专属直播间。</p>
+          <div class="solution-type">品牌商家 · 高阶版</div>
+          <h3>无损复刻 · 品牌定制</h3>
+          <p class="solution-pain">"直播太贵了，几千上万，结束后没有流量，怎么才能获得流量"</p>
           <div class="solution-highlights">
-            <div class="solution-highlight">1:1 无损复刻品牌主播形象</div>
-            <div class="solution-highlight">品牌专属直播间装修定制</div>
-            <div class="solution-highlight">全套 AI 智能互动能力</div>
-            <div class="solution-highlight">专属运营服务支持</div>
+            <div class="solution-highlight">1:1 无损复刻真人主播形象</div>
+            <div class="solution-highlight">品牌专属直播间定制装修</div>
+            <div class="solution-highlight">声音克隆 + 企业 IP 分身</div>
+            <div class="solution-highlight">全套 AI 智能交互能力</div>
+            <div class="solution-highlight">一站式运营托管服务</div>
+            <div class="solution-highlight">专属运营顾问支持</div>
           </div>
-          <a href="#cta" class="solution-link">了解详情 →</a>
-          <div class="solution-ease">专属顾问 1 对 1 搭建</div>
+          <div class="solution-result">
+            <div class="solution-result-item">
+              <div class="solution-result-value">24h</div>
+              <div class="solution-result-label">不间断直播</div>
+            </div>
+            <div class="solution-result-item">
+              <div class="solution-result-value">-65%</div>
+              <div class="solution-result-label">运营成本</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="solution-card fade-up">
         <div class="solution-visual">🏪</div>
         <div class="solution-body">
-          <div class="solution-type">特色门店</div>
-          <h3>门店实景特色直播</h3>
-          <p class="solution-pain">想播但没人、没场地、不会运营？实景定制方案让你的门店特色在直播间完美呈现。</p>
+          <div class="solution-type">特色门店 · 轻享版</div>
+          <h3>实景定制 · 特色呈现</h3>
+          <p class="solution-pain">"用户不太清楚我们的品牌、门店环境和体验"</p>
           <div class="solution-highlights">
             <div class="solution-highlight">门店实景定制直播背景</div>
-            <div class="solution-highlight">AI 自动挖掘门店卖点</div>
-            <div class="solution-highlight">智能文案一键生成</div>
+            <div class="solution-highlight">数字员工直播，还原真实场景</div>
+            <div class="solution-highlight">海量精品素材库 + AI 工具组</div>
+            <div class="solution-highlight">AI 自动挖掘门店特色卖点</div>
+            <div class="solution-highlight">智能问答互动 + AI 助播</div>
             <div class="solution-highlight">30 分钟完成直播间搭建</div>
           </div>
-          <a href="#cta" class="solution-link">了解详情 →</a>
-          <div class="solution-ease">30 分钟搭建完成</div>
+          <div class="solution-result">
+            <div class="solution-result-item">
+              <div class="solution-result-value">+5%</div>
+              <div class="solution-result-label">人均观看时长</div>
+            </div>
+            <div class="solution-result-item">
+              <div class="solution-result-value">9.11%</div>
+              <div class="solution-result-label">访购率</div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="solution-card fade-up">
         <div class="solution-visual">🛒</div>
         <div class="solution-body">
-          <div class="solution-type">本土商家</div>
-          <h3>零门槛轻松开播</h3>
-          <p class="solution-pain">预算有限、不懂直播？基础版数字人 3 分钟开播，模板装修一键搞定，让直播变得像发朋友圈一样简单。</p>
+          <div class="solution-type">本土商家 · 智能云播</div>
+          <h3>物料托管 · 零门槛开播</h3>
+          <p class="solution-pain">"开播流程复杂，准备一场至少 10 分钟"</p>
           <div class="solution-highlights">
-            <div class="solution-highlight">3 分钟极速开播</div>
-            <div class="solution-highlight">海量模板一键装修</div>
-            <div class="solution-highlight">AI 自动生成讲解内容</div>
-            <div class="solution-highlight">超低成本入门</div>
+            <div class="solution-highlight">3 分钟极速开播（选品→装修→发布）</div>
+            <div class="solution-highlight">AI-agent 一键装修、选品</div>
+            <div class="solution-highlight">30 秒生成并发布直播素材</div>
+            <div class="solution-highlight">AI 自动生成讲解文案</div>
+            <div class="solution-highlight">模板化直播间装修</div>
+            <div class="solution-highlight">无人值守，全自动运行</div>
           </div>
-          <a href="#cta" class="solution-link">了解详情 →</a>
-          <div class="solution-ease">3 分钟即可开播</div>
+          <div class="solution-result">
+            <div class="solution-result-item">
+              <div class="solution-result-value">+60%</div>
+              <div class="solution-result-label">操作效率提升</div>
+            </div>
+            <div class="solution-result-item">
+              <div class="solution-result-value">30s</div>
+              <div class="solution-result-label">素材生成</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Features：移到解决方案之后 -->
-<section class="features section" id="features">
+<!-- Core Capabilities -->
+<section class="capabilities section" id="capabilities">
   <div class="container">
-    <div class="features-header">
-      <div class="section-label">产品能力</div>
-      <h2 class="section-title">AI 驱动，全方位赋能直播</h2>
-      <p class="section-desc">从主播形象到智能互动，一站式解决直播全链路需求，让数字人直播像真人一样专业、自然。</p>
+    <div class="section-header">
+      <div class="section-label">核心能力</div>
+      <h2 class="section-title">五大能力体系，全链路 AI 赋能</h2>
+      <p class="section-desc">从主播形象到智能运营，覆盖数字人直播全链路。点击各能力模块，深入了解每项功能细节。</p>
     </div>
-    <div class="features-grid">
-      <div class="feature-card fade-up">
-        <div class="feature-icon">👤</div>
-        <h3>海量主播形象</h3>
-        <p>300+ 真人形象库，覆盖男女各年龄段，适配优雅、甜美、运动、商务等多样风格。支持 1:1 真人复刻和门店实景定制，打造品牌专属主播。</p>
-        <div class="feature-tags">
-          <span class="feature-tag">真人形象库</span>
-          <span class="feature-tag">1:1 复刻</span>
-          <span class="feature-tag">实景定制</span>
-          <span class="feature-tag">四季场景</span>
+
+    <!-- Tabs -->
+    <div class="cap-tabs">
+      <div class="cap-tab active" data-panel="panel-avatar">数字人形象</div>
+      <div class="cap-tab" data-panel="panel-voice">主播声音</div>
+      <div class="cap-tab" data-panel="panel-content">智能文案</div>
+      <div class="cap-tab" data-panel="panel-deco">直播间装修</div>
+      <div class="cap-tab" data-panel="panel-interact">智能交互</div>
+    </div>
+
+    <!-- Panel: 数字人形象 -->
+    <div class="cap-panel active" id="panel-avatar">
+      <div class="cap-detail">
+        <div class="cap-detail-main">
+          <h3>海量真人形象库</h3>
+          <p>所有数字人主播均为真人形象，全面覆盖男女各年龄段，适配四季场景与多样风格。通过筛选优质模特、调整妆造细节、拍摄视频素材，并对素材进行人像增强、唇型驱动等技术处理，确保数字人在线上有优秀的形象展现，行为向真人收敛。</p>
+          <div class="cap-feature-list">
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--blue-light)">👤</div>
+              <div>
+                <h4>300+ 多元化形象</h4>
+                <p>覆盖优雅、甜美、运动、商务等多样风格，精准匹配餐饮、乐生活等本地生活领域</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--purple-light)">🪞</div>
+              <div>
+                <h4>1:1 真人主播复刻</h4>
+                <p>无损复刻品牌真人主播形象，AI 分身可在真人休息时段实现 24 小时不间断直播</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--green-light)">🏠</div>
+              <div>
+                <h4>门店实景定制</h4>
+                <p>专属实景定制服务，针对特色门店打造实景直播场景，同步克隆数字员工开展直播</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--orange-light)">👄</div>
+              <div>
+                <h4>唇型驱动技术</h4>
+                <p>通过算法实现音频信号与唇形动作实时映射，消除"口不对音"的违和感</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--pink-light)">✨</div>
+              <div>
+                <h4>人像增强处理</h4>
+                <p>对模特素材进行专业人像增强，确保线上展现效果清晰、自然、有质感</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-detail-side">
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--blue)">300+</div>
+            <div class="stat-label">真人形象可选</div>
+          </div>
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--purple)">1:1</div>
+            <div class="stat-label">真人无损复刻</div>
+          </div>
+          <div class="cap-spec-list">
+            <h4>支持形象类型</h4>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--blue)"></span>站姿 / 坐姿形象</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--orange)"></span>男性 / 女性全覆盖</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--green)"></span>四季场景适配</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--purple)"></span>多行业风格匹配</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--pink)"></span>品牌 IP 定制</div>
+          </div>
         </div>
       </div>
-      <div class="feature-card fade-up">
-        <div class="feature-icon">📝</div>
-        <h3>智能直播内容</h3>
-        <p>AI 自动生成讲解文案，智能挖掘门店特色卖点，支持多商品轮播讲解。不用写稿，AI 帮你讲出每道菜、每件商品的亮点。</p>
-        <div class="feature-tags">
-          <span class="feature-tag">AI 文案</span>
-          <span class="feature-tag">卖点挖掘</span>
-          <span class="feature-tag">多品轮播</span>
-          <span class="feature-tag">声音克隆</span>
+    </div>
+
+    <!-- Panel: 主播声音 -->
+    <div class="cap-panel" id="panel-voice">
+      <div class="cap-detail">
+        <div class="cap-detail-main">
+          <h3>多样化主播音色</h3>
+          <p>提供 30 余种高品质男女音色，涵盖多种音色类型与地域风格，支持按需灵活匹配。叠加 AI 助播音效，打造真实、沉浸式的直播间听觉体验。音色清晰悦耳，提供多样化的语气语调选择。</p>
+          <div class="cap-feature-list">
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--orange-light)">🎙️</div>
+              <div>
+                <h4>30+ 高品质音色</h4>
+                <p>男女音色全覆盖，涵盖温柔、活泼、沉稳、专业等多种类型，适配不同品牌调性</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--blue-light)">🗣️</div>
+              <div>
+                <h4>声音克隆</h4>
+                <p>支持克隆品牌真人主播声音，AI 分身不仅形似更神似，保持品牌统一的声音辨识度</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--green-light)">🌍</div>
+              <div>
+                <h4>地域风格</h4>
+                <p>支持多种地域风格音色，贴合本地商家需求，让直播更接地气</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--purple-light)">🔊</div>
+              <div>
+                <h4>AI 助播音效</h4>
+                <p>叠加智能音效，营造直播间氛围感，增强观众沉浸体验</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--pink-light)">⚙️</div>
+              <div>
+                <h4>发音干预</h4>
+                <p>支持手动干预专业术语、品牌名称等特殊词汇的发音，确保准确播报</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-detail-side">
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--orange)">30+</div>
+            <div class="stat-label">高品质音色</div>
+          </div>
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--blue)">TTS</div>
+            <div class="stat-label">语音合成技术</div>
+          </div>
+          <div class="cap-spec-list">
+            <h4>音色能力详情</h4>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--orange)"></span>男声 / 女声全覆盖</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--blue)"></span>多语气语调可选</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--green)"></span>声音克隆定制</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--purple)"></span>发音干预调节</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--pink)"></span>背景音乐叠加</div>
+          </div>
         </div>
       </div>
-      <div class="feature-card fade-up">
-        <div class="feature-icon">💬</div>
-        <h3>实时智能互动</h3>
-        <p>AI 实时回复观众提问，智能助播配合主播节奏，自动切换镜头画面。像真人一样与观众互动，提升直播间活跃度和转化率。</p>
-        <div class="feature-tags">
-          <span class="feature-tag">AI 问答</span>
-          <span class="feature-tag">智能助播</span>
-          <span class="feature-tag">自动切镜</span>
-          <span class="feature-tag">弹幕互动</span>
+    </div>
+
+    <!-- Panel: 智能文案 -->
+    <div class="cap-panel" id="panel-content">
+      <div class="cap-detail">
+        <div class="cap-detail-main">
+          <h3>AI 智能讲解文案</h3>
+          <p>基于大语言模型，结合商品详情、门店信息、行业数据，智能生成高转化讲解文案。建立"进场留人→建立信任→刺激下单→打消顾虑→高压逼单"全链路高效讲解框架，强化营销转化感知。</p>
+          <div class="cap-feature-list">
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--green-light)">📝</div>
+              <div>
+                <h4>AI 自动生成讲解文案</h4>
+                <p>一键生成商品讲解话术，无需人工撰写，AI 帮你讲出每道菜、每件商品的亮点</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--orange-light)">🔍</div>
+              <div>
+                <h4>门店特色卖点挖掘</h4>
+                <p>AI 自动分析门店和商品信息，精准提炼核心卖点，让讲解更有说服力</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--blue-light)">🔄</div>
+              <div>
+                <h4>多商品轮播讲解</h4>
+                <p>支持多件商品自动轮播讲解，智能切换讲解内容，覆盖全部在售商品</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--purple-light)">🎯</div>
+              <div>
+                <h4>全链路营销框架</h4>
+                <p>进场留人→建立信任→刺激下单→打消顾虑→高压逼单，结构化讲解提升转化</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--cyan-light)">📊</div>
+              <div>
+                <h4>数据驱动优化</h4>
+                <p>精准采集互动和转化数据，通过分析提问热点快速优化讲解话术与商品卖点</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-detail-side">
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--green)">AI</div>
+            <div class="stat-label">大语言模型驱动</div>
+          </div>
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--orange)">5 步</div>
+            <div class="stat-label">全链路讲解框架</div>
+          </div>
+          <div class="cap-spec-list">
+            <h4>文案能力详情</h4>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--green)"></span>AI 文案一键生成</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--orange)"></span>门店卖点智能挖掘</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--blue)"></span>多品轮播讲解</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--purple)"></span>话术手动可调</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--pink)"></span>迭代无需重新培训</div>
+          </div>
         </div>
       </div>
-      <div class="feature-card fade-up">
-        <div class="feature-icon">🎨</div>
-        <h3>一键直播间装修</h3>
-        <p>201+ 精美模板一键换装，支持节日氛围自动切换、爆品专场、异形热点等特色玩法。不用设计师，直播间也能好看又吸睛。</p>
-        <div class="feature-tags">
-          <span class="feature-tag">模板装修</span>
-          <span class="feature-tag">节日氛围</span>
-          <span class="feature-tag">品牌定制</span>
-          <span class="feature-tag">异形热点</span>
+    </div>
+
+    <!-- Panel: 直播间装修 -->
+    <div class="cap-panel" id="panel-deco">
+      <div class="cap-detail">
+        <div class="cap-detail-main">
+          <h3>直播间智能装修</h3>
+          <p>平台提供 201+ 高质量装修模板，支持一键置景、智能排版、AI 装修等多种方式，精准满足商家分层需求。从节日气氛到爆品专场，从实景复刻到异形热点，矩阵化直播画面解决方案一应俱全。</p>
+          <div class="cap-feature-list">
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--purple-light)">🎨</div>
+              <div>
+                <h4>201+ 精美模板</h4>
+                <p>海量高质量装修模板，一键换装，不用设计师也能拥有专业级直播间</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--blue-light)">🤖</div>
+              <div>
+                <h4>AI 智能装修</h4>
+                <p>AI 自动分析品类和场景，智能推荐最佳装修方案，一键生成直播间画面</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--orange-light)">🏠</div>
+              <div>
+                <h4>直播间复刻</h4>
+                <p>通过技术手段对真人直播间进行 1:1 数字化还原，品牌调性完美延续</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--green-light)">📸</div>
+              <div>
+                <h4>实景定制</h4>
+                <p>门店实景拍摄定制直播背景，真实菜品 + 沉浸式景观位，增强吸引力</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--pink-light)">🎄</div>
+              <div>
+                <h4>场景矩阵</h4>
+                <p>节日气氛、爆品专场、异形热点、品类定制等多种场景自动切换</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-detail-side">
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--purple)">201+</div>
+            <div class="stat-label">装修模板</div>
+          </div>
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--green)">6 类</div>
+            <div class="stat-label">场景方案</div>
+          </div>
+          <div class="cap-spec-list">
+            <h4>装修场景类型</h4>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--purple)"></span>直播间复刻</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--orange)"></span>实景定制</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--green)"></span>节日气氛</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--blue)"></span>爆品专场</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--pink)"></span>异形热点</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--cyan)"></span>品类定制</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: 智能交互 -->
+    <div class="cap-panel" id="panel-interact">
+      <div class="cap-detail">
+        <div class="cap-detail-main">
+          <h3>全方位智能交互</h3>
+          <p>直播间用户发起提问时，数字人主播可实现无人值守式智能响应。结合用户意图、商品详情及门店信息生成精准回复，同步引导用户完成交易转化。深度植入营销转化话术，打造高命中的直播行业专属知识库。</p>
+          <div class="cap-feature-list">
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--cyan-light)">💬</div>
+              <div>
+                <h4>AI 智能回复</h4>
+                <p>支持口播播报 + 评论区文本回复双模式，智能匹配用户意图，精准回复高频问题</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--orange-light)">🤝</div>
+              <div>
+                <h4>AI 助播</h4>
+                <p>智能助播配合主播节奏，协助场控和互动，实现真人直播般的协作默契</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--blue-light)">📷</div>
+              <div>
+                <h4>AI 切镜</h4>
+                <p>自动切换镜头画面，根据讲解内容智能匹配商品展示镜头，丰富直播视觉体验</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--green-light)">📋</div>
+              <div>
+                <h4>预设问答对</h4>
+                <p>支持人工配置高频问题的预设问答，进一步提升回复精准度与互动效率</p>
+              </div>
+            </div>
+            <div class="cap-feature-item">
+              <div class="cap-feature-icon" style="background:var(--purple-light)">🛡️</div>
+              <div>
+                <h4>评论区智能治理</h4>
+                <p>公域评论区智能治理，实现客诉超低频率下的精准秒回，保障直播间口碑</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="cap-detail-side">
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--cyan)">4 大</div>
+            <div class="stat-label">智能交互能力</div>
+          </div>
+          <div class="cap-stat-card">
+            <div class="stat-number" style="color:var(--orange)">2 种</div>
+            <div class="stat-label">回复模式</div>
+          </div>
+          <div class="cap-spec-list">
+            <h4>交互能力矩阵</h4>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--cyan)"></span>AI 回复（口播+文本）</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--orange)"></span>AI 助播</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--blue)"></span>AI 切镜</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--green)"></span>预设问答对</div>
+            <div class="cap-spec-item"><span class="cap-spec-dot" style="background:var(--purple)"></span>评论区治理</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Cases：增加商家引用语 -->
-<section class="cases section" id="cases">
+<!-- Livestream Room Showcase -->
+<section class="section" id="room">
   <div class="container">
-    <div class="cases-header">
+    <div class="section-header">
+      <div class="section-label">直播间展示</div>
+      <h2 class="section-title">一个直播间，视觉 + 语音 + 互动全覆盖</h2>
+      <p class="section-desc">数字人直播间包含丰富的视觉元素、语音播报和互动玩法，全面还原甚至超越真人直播体验。</p>
+    </div>
+    <div class="room-grid">
+      <!-- 视觉展示 -->
+      <div class="room-category fade-up">
+        <div class="room-category-icon">👁️</div>
+        <h3>视觉展示层</h3>
+        <p>直播间画面丰富多彩，从门店元素到营销挂件，全方位呈现品牌信息。</p>
+        <div class="room-items">
+          <span class="room-item" style="background:var(--blue-light);color:var(--blue)">门店元素</span>
+          <span class="room-item" style="background:var(--blue-light);color:var(--blue)">商品卡片</span>
+          <span class="room-item" style="background:var(--blue-light);color:var(--blue)">产品陈列</span>
+          <span class="room-item" style="background:var(--blue-light);color:var(--blue)">主播头像</span>
+          <span class="room-item" style="background:var(--blue-light);color:var(--blue)">直播标题</span>
+          <span class="room-item" style="background:var(--blue-light);color:var(--blue)">氛围装饰</span>
+          <span class="room-item" style="background:var(--purple-light);color:var(--purple)">行业形象</span>
+          <span class="room-item" style="background:var(--purple-light);color:var(--purple)">品牌 Logo</span>
+          <span class="room-item" style="background:var(--purple-light);color:var(--purple)">营销挂件</span>
+          <span class="room-item" style="background:var(--purple-light);color:var(--purple)">主播昵称</span>
+          <span class="room-item" style="background:var(--purple-light);color:var(--purple)">直播封面</span>
+          <span class="room-item" style="background:var(--purple-light);color:var(--purple)">动态弹窗</span>
+        </div>
+      </div>
+      <!-- 语音展示 -->
+      <div class="room-category fade-up">
+        <div class="room-category-icon">🔈</div>
+        <h3>语音播报层</h3>
+        <p>从进场欢迎到下单激励，全流程语音覆盖，让每个观众都被照顾到。</p>
+        <div class="room-items">
+          <span class="room-item" style="background:var(--orange-light);color:var(--orange)">门店说明</span>
+          <span class="room-item" style="background:var(--orange-light);color:var(--orange)">进场欢迎</span>
+          <span class="room-item" style="background:var(--orange-light);color:var(--orange)">抽奖福袋</span>
+          <span class="room-item" style="background:var(--orange-light);color:var(--orange)">直播主题</span>
+          <span class="room-item" style="background:var(--orange-light);color:var(--orange)">卖点讲解</span>
+          <span class="room-item" style="background:var(--orange-light);color:var(--orange)">背景音乐</span>
+          <span class="room-item" style="background:var(--pink-light);color:var(--pink)">品牌口号</span>
+          <span class="room-item" style="background:var(--pink-light);color:var(--pink)">货架引导</span>
+          <span class="room-item" style="background:var(--pink-light);color:var(--pink)">下单激励</span>
+          <span class="room-item" style="background:var(--pink-light);color:var(--pink)">福利播报</span>
+          <span class="room-item" style="background:var(--pink-light);color:var(--pink)">口播回复</span>
+          <span class="room-item" style="background:var(--pink-light);color:var(--pink)">音效点缀</span>
+        </div>
+      </div>
+      <!-- 互动展示 -->
+      <div class="room-category fade-up">
+        <div class="room-category-icon">🎮</div>
+        <h3>互动玩法层</h3>
+        <p>多样化互动玩法，高度还原真人直播体验，提升观众停留时长和转化率。</p>
+        <div class="room-items">
+          <span class="room-item" style="background:var(--green-light);color:var(--green)">弹幕评论</span>
+          <span class="room-item" style="background:var(--green-light);color:var(--green)">秒杀限购</span>
+          <span class="room-item" style="background:var(--green-light);color:var(--green)">下单飘屏</span>
+          <span class="room-item" style="background:var(--green-light);color:var(--green)">下单提示</span>
+          <span class="room-item" style="background:var(--green-light);color:var(--green)">专属福利</span>
+          <span class="room-item" style="background:var(--green-light);color:var(--green)">分享有礼</span>
+          <span class="room-item" style="background:var(--cyan-light);color:var(--cyan)">点赞特效</span>
+          <span class="room-item" style="background:var(--cyan-light);color:var(--cyan)">红包福袋</span>
+          <span class="room-item" style="background:var(--cyan-light);color:var(--cyan)">问答互动</span>
+          <span class="room-item" style="background:var(--cyan-light);color:var(--cyan)">粉丝团</span>
+          <span class="room-item" style="background:var(--cyan-light);color:var(--cyan)">场观数据</span>
+          <span class="room-item" style="background:var(--cyan-light);color:var(--cyan)">爱心拍卖</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cases -->
+<section class="section" id="cases" style="background:var(--gray-50)">
+  <div class="container">
+    <div class="section-header">
       <div class="section-label">客户案例</div>
       <h2 class="section-title">真实效果，数据说话</h2>
-      <p class="section-desc">来自不同行业的商家，通过数字人直播实现了直播时长、转化率和收益的显著提升。</p>
+      <p class="section-desc">来自不同行业和体量的商家，通过数字人直播实现了直播时长、转化率和收益的显著提升。</p>
     </div>
     <div class="cases-grid">
       <div class="case-card fade-up">
-        <div class="case-industry">品牌餐饮</div>
-        <h3>知名连锁品牌 · 无损复刻方案</h3>
+        <div class="case-industry">品牌商家 · 无损复刻</div>
+        <h3>真人主播 AI 分身 24 小时不断播</h3>
         <div class="case-metrics">
           <div>
             <div class="case-metric-value">24h</div>
@@ -566,44 +1006,47 @@ button { border: none; cursor: pointer; font-family: inherit; }
             <div class="case-metric-label">投次比成本</div>
           </div>
         </div>
+        <p class="case-desc">在真人直播时长有限的情况下，AI 分身可实现 24 小时不间断直播，有效填补闲时流量空白。在直播低谷期，场次供给量仅为峰值的 35%，AI 分身能更高效地助力品牌扩大声量。</p>
         <div class="case-quote">
-          "以前每天只能播 4 小时，现在 24 小时都在播，成本还降了一半多。数字人主播比真人稳定太多了。"
+          "AI 分身帮我们覆盖了真人主播无法覆盖的时段，品牌曝光翻了一倍。"
           <div class="case-quote-author">— 某连锁品牌运营负责人</div>
         </div>
       </div>
       <div class="case-card fade-up">
-        <div class="case-industry">特色门店</div>
-        <h3>本地特色餐厅 · 实景定制方案</h3>
+        <div class="case-industry">特色门店 · 实景定制</div>
+        <h3>实景 + 数字员工，环境氛围拉满</h3>
         <div class="case-metrics">
           <div>
-            <div class="case-metric-value">+45%</div>
-            <div class="case-metric-label">直播转化率</div>
+            <div class="case-metric-value">+5%</div>
+            <div class="case-metric-label">人均观看时长</div>
           </div>
           <div>
-            <div class="case-metric-value">30min</div>
-            <div class="case-metric-label">搭建直播间</div>
+            <div class="case-metric-value">9.11%</div>
+            <div class="case-metric-label">访购率</div>
           </div>
         </div>
+        <p class="case-desc">直播包含真实菜品展示及沉浸式景观座位等场景，有效强化环境氛围与菜品呈现效果。访购率从 8.71% 提升至 9.11%。</p>
         <div class="case-quote">
-          "把我们店的实景搬到了直播间里，客人看着就想来。转化率比之前纯图片直播高了快一半。"
+          "把我们店的实景搬到直播间，客人看了就想来。内容体验感拉满。"
           <div class="case-quote-author">— 某特色餐厅店主</div>
         </div>
       </div>
       <div class="case-card fade-up">
-        <div class="case-industry">本地零售</div>
-        <h3>社区商家 · 物料托管方案</h3>
+        <div class="case-industry">本土商家 · 物料托管</div>
+        <h3>三步开播，操作效率提升 60%</h3>
         <div class="case-metrics">
           <div>
             <div class="case-metric-value">+60%</div>
-            <div class="case-metric-label">曝光提升</div>
+            <div class="case-metric-label">操作效率</div>
           </div>
           <div>
-            <div class="case-metric-value">3min</div>
-            <div class="case-metric-label">开播耗时</div>
+            <div class="case-metric-value">30s</div>
+            <div class="case-metric-label">素材生成</div>
           </div>
         </div>
+        <p class="case-desc">数字人直播流程整合至单一平台，仅需三步即可独立开播（选品、装修、发布）。AI-agent 支持一键装修、选品等智能运营方案，30 秒即可生成并发布直播素材。</p>
         <div class="case-quote">
-          "我一个人开店，根本没时间直播。现在 3 分钟设置好就不用管了，曝光量涨了六成。"
+          "一个人开店根本没时间直播，现在 3 分钟设置好就不用管了。"
           <div class="case-quote-author">— 某社区便利店老板</div>
         </div>
       </div>
@@ -611,10 +1054,10 @@ button { border: none; cursor: pointer; font-family: inherit; }
   </div>
 </section>
 
-<!-- Pricing：突出免费试用入口 -->
+<!-- Pricing -->
 <section class="section" id="pricing">
   <div class="container">
-    <div class="pricing-header">
+    <div class="section-header">
       <div class="section-label">版本价格</div>
       <h2 class="section-title">选择适合你的方案</h2>
       <p class="section-desc">从零门槛入门到品牌深度定制，灵活选择最匹配你需求的版本。</p>
@@ -634,24 +1077,27 @@ button { border: none; cursor: pointer; font-family: inherit; }
           <li>AI 自动生成讲解文案</li>
           <li>基础数据看板</li>
           <li>3 分钟快速开播</li>
+          <li>无人值守模式</li>
         </ul>
         <a href="#cta" class="pricing-btn pricing-btn-green">立即免费开播</a>
       </div>
       <div class="pricing-card featured fade-up">
         <div class="pricing-name">进阶版</div>
         <div class="pricing-title">轻享版</div>
-        <div class="pricing-desc">适合特色门店，更丰富的形象和智能能力，让直播更有特色和吸引力。</div>
+        <div class="pricing-desc">适合特色门店，更丰富的形象和智能能力，直播间更有特色和吸引力。</div>
         <div class="pricing-price">
           <strong>¥999</strong> /月起
           <span class="price-sub">含 7 天免费试用</span>
         </div>
         <ul class="pricing-features">
-          <li>全量数字人形象库</li>
+          <li>全量数字人形象库（300+）</li>
           <li>门店实景定制背景</li>
           <li>AI 智能文案 + 卖点挖掘</li>
-          <li>智能问答互动</li>
-          <li>AI 助播 + 自动切镜</li>
+          <li>智能问答互动（双模式）</li>
+          <li>AI 助播 + AI 切镜</li>
+          <li>多商品轮播讲解</li>
           <li>详细数据分析报告</li>
+          <li>发音干预调节</li>
         </ul>
         <a href="#cta" class="pricing-btn pricing-btn-primary">免费试用 7 天</a>
       </div>
@@ -665,12 +1111,14 @@ button { border: none; cursor: pointer; font-family: inherit; }
         </div>
         <ul class="pricing-features">
           <li>1:1 真人主播无损复刻</li>
+          <li>声音克隆定制</li>
           <li>品牌专属直播间定制</li>
-          <li>声音克隆 + 形象定制</li>
-          <li>全套 AI 智能交互能力</li>
+          <li>企业 IP 分身</li>
+          <li>全套 AI 智能交互</li>
+          <li>评论区智能治理</li>
           <li>品牌元素深度融合</li>
-          <li>专属运营顾问服务</li>
-          <li>一站式运营托管</li>
+          <li>专属运营顾问 + 一站式托管</li>
+          <li>实景拍摄服务</li>
         </ul>
         <a href="#cta" class="pricing-btn pricing-btn-outline">预约演示</a>
       </div>
@@ -678,10 +1126,53 @@ button { border: none; cursor: pointer; font-family: inherit; }
   </div>
 </section>
 
-<!-- Steps -->
-<section class="steps section" id="steps">
+<!-- Roadmap -->
+<section class="roadmap section" id="roadmap">
   <div class="container">
-    <div class="steps-header">
+    <div class="section-header">
+      <div class="section-label">迭代计划</div>
+      <h2 class="section-title">持续进化，从"形象展示"到"智能运营"</h2>
+      <p class="section-desc">产品将持续升级视听体验、互动玩法及直播管理工具，实现全面进化。以下是核心迭代方向。</p>
+    </div>
+    <div class="roadmap-grid">
+      <div class="roadmap-card fade-up">
+        <div class="roadmap-icon">🎙️</div>
+        <h4>声音升级</h4>
+        <p>更多高品质音色，更自然的语气语调，沉浸式听觉体验</p>
+      </div>
+      <div class="roadmap-card fade-up">
+        <div class="roadmap-icon">👤</div>
+        <h4>形象进化</h4>
+        <p>举牌数字人、AI 捏人，打造行业标配 + 创新互动 IP + 自定义独家形象生态</p>
+      </div>
+      <div class="roadmap-card fade-up">
+        <div class="roadmap-icon">🎨</div>
+        <h4>装修矩阵化</h4>
+        <p>一键置景、智能排版、下单直播间焕肤，矩阵化画面解决方案</p>
+      </div>
+      <div class="roadmap-card fade-up">
+        <div class="roadmap-icon">📝</div>
+        <h4>文案强化</h4>
+        <p>用户与主播风格标签，优化原始物料，强化全链路营销转化感知</p>
+      </div>
+      <div class="roadmap-card fade-up">
+        <div class="roadmap-icon">💬</div>
+        <h4>互动深化</h4>
+        <p>深度营销转化话术，行业专属知识库，精准秒回，超低客诉</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px;">
+      <p style="font-size:15px;color:var(--gray-600);max-width:700px;margin:0 auto;line-height:1.8;">
+        <strong style="color:var(--gray-900)">核心目标：</strong>通过视听 + 交互 + 运营全链路 AI 升级，达到媲美真人主播的专业表现与运营效能，助力商家业务增长，构建普惠化的数字人直播生态。
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section class="section" id="steps">
+  <div class="container">
+    <div class="section-header">
       <div class="section-label">开播指引</div>
       <h2 class="section-title">5 步开启数字人直播</h2>
       <p class="section-desc">从注册到开播，最快只需 3 分钟。跟着步骤走，轻松拥有你的专属数字人主播。</p>
@@ -695,23 +1186,26 @@ button { border: none; cursor: pointer; font-family: inherit; }
       <div class="step-item fade-up">
         <div class="step-number">2</div>
         <div class="step-title">选择形象</div>
-        <div class="step-desc">从 300+ 形象库中挑选最适合你品牌风格的数字人主播</div>
+        <div class="step-desc">从 300+ 形象库中挑选适合品牌风格的数字人主播</div>
       </div>
       <div class="step-item fade-up">
         <div class="step-number">3</div>
         <div class="step-title">装修直播间</div>
-        <div class="step-desc">一键套用模板或自定义装修，打造专属直播间视觉</div>
+        <div class="step-desc">一键套用模板或 AI 智能装修，打造专属直播间画面</div>
       </div>
       <div class="step-item fade-up">
         <div class="step-number">4</div>
         <div class="step-title">配置内容</div>
-        <div class="step-desc">AI 自动生成讲解文案，设置商品轮播和互动规则</div>
+        <div class="step-desc">AI 生成讲解文案，设置商品轮播、互动回复和助播规则</div>
       </div>
       <div class="step-item fade-up">
         <div class="step-number">5</div>
         <div class="step-title">一键开播</div>
         <div class="step-desc">确认预览效果，点击开播，数字人主播即刻上线</div>
       </div>
+    </div>
+    <div style="text-align:center;margin-top:56px;">
+      <p style="font-size:14px;color:var(--gray-400);">直播入口：美团 APP 首页 → 美团直播 → 直播广场 ｜ 美团 APP → 商家首页</p>
     </div>
   </div>
 </section>
@@ -720,7 +1214,7 @@ button { border: none; cursor: pointer; font-family: inherit; }
 <section class="cta-section" id="cta">
   <div class="container">
     <h2 class="section-title">准备好开启数字人直播了吗？</h2>
-    <p class="section-desc">3 分钟开播，7×24 小时不间断，让你的店铺直播永不打烊。</p>
+    <p class="section-desc">3 分钟开播，7×24 小时不间断，让你的店铺直播永不打烊。覆盖酒旅、到餐、到家等多类直播场景。</p>
     <div class="cta-actions">
       <a href="#" class="cta-btn-white">免费开始使用 →</a>
       <a href="#" class="cta-btn-ghost">预约 1 对 1 演示</a>
@@ -737,25 +1231,27 @@ button { border: none; cursor: pointer; font-family: inherit; }
           <span style="width:28px;height:28px;background:var(--blue);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;">D</span>
           美团数字人直播
         </h3>
-        <p>通过 AI 技术赋能本地生活商家，让每家店都能拥有专业、稳定、低成本的 24 小时直播能力。</p>
+        <p>通过 AI 技术赋能本地生活商家，实现"无人化"或"半无人化"直播运营，覆盖酒旅、到餐、到家等多类直播场景。从"形象展示"到"智能运营"的全面进化。</p>
       </div>
       <div class="footer-col">
         <h4>产品</h4>
         <a href="#solutions">解决方案</a>
-        <a href="#features">产品能力</a>
+        <a href="#capabilities">核心能力</a>
+        <a href="#room">直播间展示</a>
         <a href="#pricing">版本价格</a>
-        <a href="#steps">开播指引</a>
+        <a href="#roadmap">迭代计划</a>
       </div>
       <div class="footer-col">
         <h4>资源</h4>
-        <a href="#">帮助中心</a>
-        <a href="#">操作文档</a>
+        <a href="#">高阶版开播指南</a>
+        <a href="#">轻享版开播指南</a>
+        <a href="#">智能云播开播指南</a>
         <a href="#">常见问题</a>
-        <a href="#">更新日志</a>
       </div>
       <div class="footer-col">
         <h4>联系我们</h4>
-        <a href="#">商务合作</a>
+        <a href="#">商业化合作</a>
+        <a href="#">产品能力咨询</a>
         <a href="#">技术支持</a>
         <a href="#">意见反馈</a>
       </div>
@@ -766,8 +1262,9 @@ button { border: none; cursor: pointer; font-family: inherit; }
   </div>
 </footer>
 
-<!-- Scroll Animation Script -->
+<!-- Scripts -->
 <script>
+// Scroll fade-up animation
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -775,27 +1272,30 @@ const observer = new IntersectionObserver((entries) => {
     }
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
 // Nav scroll effect
 const nav = document.querySelector('.nav');
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 50) {
-    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
-  } else {
-    nav.style.boxShadow = 'none';
-  }
+  nav.style.boxShadow = window.scrollY > 50 ? '0 2px 20px rgba(0,0,0,0.08)' : 'none';
 });
 
-// Smooth scroll for nav links
+// Smooth scroll
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
     const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+
+// Capability tabs
+document.querySelectorAll('.cap-tab').forEach(tab => {
+  tab.addEventListener('click', function() {
+    document.querySelectorAll('.cap-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.cap-panel').forEach(p => p.classList.remove('active'));
+    this.classList.add('active');
+    document.getElementById(this.dataset.panel).classList.add('active');
   });
 });
 </script>
