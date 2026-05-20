@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>美团数字人直播 - 让每家店都有自己的24小时主播</title>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: #1a1a2e; background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased;
+}
+a { text-decoration: none; color: inherit; }
+button { border: none; cursor: pointer; font-family: inherit; }
+
+:root {
+  --blue: #3366FF; --blue-light: #EBF0FF; --blue-dark: #2952CC;
+  --orange: #FF6B35; --orange-light: #FFF3ED;
+  --green: #00C48C; --green-light: #E6FAF3;
+  --purple: #7B61FF; --purple-light: #F0EDFF;
+  --gray-50: #FAFBFC; --gray-100: #F4F5F7; --gray-200: #E8EAED;
+  --gray-400: #9AA0A6; --gray-600: #5F6368; --gray-800: #2D2D3A; --gray-900: #1a1a2e;
+  --radius: 16px; --radius-lg: 24px;
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+  --shadow-md: 0 8px 30px rgba(0,0,0,0.08);
+  --shadow-lg: 0 20px 60px rgba(0,0,0,0.1);
+  --max-w: 1200px;
+}
+
+.container { max-width: var(--max-w); margin: 0 auto; padding: 0 40px; }
+.section { padding: 120px 0; }
+.section-label {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 600; letter-spacing: 2px;
+  color: var(--blue); background: var(--blue-light);
+  padding: 6px 16px; border-radius: 20px; margin-bottom: 20px;
+}
+.section-title {
+  font-size: 42px; font-weight: 700; line-height: 1.25;
+  color: var(--gray-900); margin-bottom: 16px; letter-spacing: -0.5px;
+}
+.section-desc { font-size: 18px; color: var(--gray-600); max-width: 640px; line-height: 1.7; }
+
+/* ===== Nav ===== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.85); backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid rgba(0,0,0,0.06); transition: all 0.3s ease;
+}
+.nav-inner {
+  max-width: var(--max-w); margin: 0 auto; padding: 0 40px;
+  display: flex; align-items: center; justify-content: space-between; height: 64px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 700; }
+.nav-logo-icon {
+  width: 32px; height: 32px; background: var(--blue); border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 16px; font-weight: 800;
+}
+.nav-links { display: flex; gap: 32px; align-items: center; }
+.nav-links a { font-size: 14px; font-weight: 500; color: var(--gray-600); transition: color 0.2s; }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+  background: var(--blue); color: #fff !important; padding: 8px 20px;
+  border-radius: 50px; font-size: 13px !important; font-weight: 600 !important; transition: all 0.3s;
+}
+.nav-cta:hover { background: var(--blue-dark); }
+
+/* ===== Hero ===== */
+.hero {
+  min-height: 100vh; display: flex; align-items: center;
+  background: linear-gradient(160deg, #F8FAFF 0%, #EEF2FF 40%, #FFF 100%);
+  position: relative; overflow: hidden; padding-top: 64px;
+}
+.hero::before {
+  content: ''; position: absolute; top: -200px; right: -200px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(51,102,255,0.08) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero::after {
+  content: ''; position: absolute; bottom: -100px; left: -100px;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(255,107,53,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+}
+.hero .container { position: relative; z-index: 1; }
+.hero-content { text-align: center; max-width: 800px; margin: 0 auto; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(51,102,255,0.08); color: var(--blue);
+  padding: 8px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; margin-bottom: 32px;
+}
+.hero-badge::before {
+  content: ''; width: 8px; height: 8px; background: var(--blue);
+  border-radius: 50%; animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+.hero-title {
+  font-size: 56px; font-weight: 800; line-height: 1.2;
+  color: var(--gray-900); margin-bottom: 24px; letter-spacing: -1px;
+}
+.hero-title span { color: var(--blue); }
+.hero-subtitle {
+  font-size: 20px; color: var(--gray-600); line-height: 1.7;
+  margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto;
+}
+.hero-actions { display: flex; gap: 16px; justify-content: center; margin-bottom: 80px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--blue); color: #fff; padding: 14px 32px; border-radius: 50px;
+  font-size: 16px; font-weight: 600; transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(51,102,255,0.3);
+}
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 8px 25px rgba(51,102,255,0.4); }
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: var(--blue); padding: 14px 32px; border-radius: 50px;
+  font-size: 16px; font-weight: 600; border: 2px solid var(--blue); transition: all 0.3s ease;
+}
+.btn-outline:hover { background: var(--blue); color: #fff; transform: translateY(-2px); }
+
+.hero-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.stat-card {
+  background: #fff; border-radius: var(--radius); padding: 32px 24px; text-align: center;
+  box-shadow: var(--shadow-sm); border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s ease;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.stat-number { font-size: 36px; font-weight: 800; color: var(--blue); margin-bottom: 8px; letter-spacing: -1px; }
+.stat-card:nth-child(2) .stat-number { color: var(--orange); }
+.stat-card:nth-child(3) .stat-number { color: var(--green); }
+.stat-card:nth-child(4) .stat-number { color: var(--purple); }
+.stat-label { font-size: 14px; color: var(--gray-600); font-weight: 500; }
+
+/* ===== Solutions ===== */
+.solutions-header { text-align: center; margin-bottom: 72px; }
+.solutions-header .section-desc { margin: 0 auto; }
+.solutions-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.solution-card {
+  background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06); transition: all 0.4s ease; display: flex; flex-direction: column;
+}
+.solution-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.solution-visual {
+  height: 200px; display: flex; align-items: center; justify-content: center; font-size: 64px;
+}
+.solution-card:nth-child(1) .solution-visual { background: linear-gradient(135deg, #EBF0FF, #D6E0FF); }
+.solution-card:nth-child(2) .solution-visual { background: linear-gradient(135deg, #FFF3ED, #FFE0CC); }
+.solution-card:nth-child(3) .solution-visual { background: linear-gradient(135deg, #E6FAF3, #C2F0E0); }
+.solution-body { padding: 32px; flex: 1; display: flex; flex-direction: column; }
+.solution-type { font-size: 12px; font-weight: 700; letter-spacing: 1px; margin-bottom: 8px; }
+.solution-card:nth-child(1) .solution-type { color: var(--blue); }
+.solution-card:nth-child(2) .solution-type { color: var(--orange); }
+.solution-card:nth-child(3) .solution-type { color: var(--green); }
+.solution-body h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+.solution-pain { font-size: 14px; color: var(--gray-600); line-height: 1.7; margin-bottom: 20px; flex: 1; }
+.solution-highlights { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.solution-highlight {
+  display: flex; align-items: flex-start; gap: 10px;
+  font-size: 14px; color: var(--gray-800); font-weight: 500;
+}
+.solution-highlight::before {
+  content: '✓'; font-weight: 700; flex-shrink: 0;
+  width: 20px; height: 20px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center; font-size: 11px;
+}
+.solution-card:nth-child(1) .solution-highlight::before { background: var(--blue-light); color: var(--blue); }
+.solution-card:nth-child(2) .solution-highlight::before { background: var(--orange-light); color: var(--orange); }
+.solution-card:nth-child(3) .solution-highlight::before { background: var(--green-light); color: var(--green); }
+.solution-link { font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.3s; }
+.solution-card:nth-child(1) .solution-link { color: var(--blue); }
+.solution-card:nth-child(2) .solution-link { color: var(--orange); }
+.solution-card:nth-child(3) .solution-link { color: var(--green); }
+.solution-link:hover { gap: 12px; }
+.solution-ease {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 12px; font-weight: 600; color: var(--gray-400);
+  margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--gray-200);
+}
+.solution-ease::before {
+  content: '⚡'; font-size: 14px;
+}
+
+/* ===== Features ===== */
+.features { background: var(--gray-50); }
+.features-header { text-align: center; margin-bottom: 72px; }
+.features-header .section-desc { margin: 0 auto; }
+.features-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+.feature-card {
+  background: #fff; border-radius: var(--radius-lg); padding: 48px;
+  border: 1px solid rgba(0,0,0,0.04); transition: all 0.4s ease; overflow: hidden;
+}
+.feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+.feature-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 24px;
+}
+.feature-card:nth-child(1) .feature-icon { background: var(--blue-light); }
+.feature-card:nth-child(2) .feature-icon { background: var(--orange-light); }
+.feature-card:nth-child(3) .feature-icon { background: var(--green-light); }
+.feature-card:nth-child(4) .feature-icon { background: var(--purple-light); }
+.feature-card h3 { font-size: 22px; font-weight: 700; margin-bottom: 12px; }
+.feature-card p { font-size: 15px; color: var(--gray-600); line-height: 1.7; margin-bottom: 24px; }
+.feature-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.feature-tag { font-size: 12px; font-weight: 600; padding: 5px 12px; border-radius: 6px; }
+.feature-card:nth-child(1) .feature-tag { background: var(--blue-light); color: var(--blue); }
+.feature-card:nth-child(2) .feature-tag { background: var(--orange-light); color: var(--orange); }
+.feature-card:nth-child(3) .feature-tag { background: var(--green-light); color: var(--green); }
+.feature-card:nth-child(4) .feature-tag { background: var(--purple-light); color: var(--purple); }
+
+/* ===== Cases ===== */
+.cases { background: var(--gray-50); }
+.cases-header { text-align: center; margin-bottom: 72px; }
+.cases-header .section-desc { margin: 0 auto; }
+.cases-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.case-card {
+  background: #fff; border-radius: var(--radius-lg); padding: 40px;
+  border: 1px solid rgba(0,0,0,0.04); transition: all 0.3s ease;
+}
+.case-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.case-industry { font-size: 12px; font-weight: 700; letter-spacing: 1px; color: var(--blue); margin-bottom: 16px; }
+.case-card:nth-child(2) .case-industry { color: var(--orange); }
+.case-card:nth-child(3) .case-industry { color: var(--green); }
+.case-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 16px; }
+.case-metrics { display: flex; gap: 24px; margin-bottom: 20px; }
+.case-metric-value { font-size: 28px; font-weight: 800; color: var(--blue); letter-spacing: -1px; }
+.case-card:nth-child(2) .case-metric-value { color: var(--orange); }
+.case-card:nth-child(3) .case-metric-value { color: var(--green); }
+.case-metric-label { font-size: 12px; color: var(--gray-400); margin-top: 2px; }
+.case-quote {
+  font-size: 14px; color: var(--gray-800); line-height: 1.7;
+  padding: 16px 20px; background: var(--gray-50); border-radius: 12px;
+  margin-top: 20px; border-left: 3px solid var(--blue);
+  font-style: italic; position: relative;
+}
+.case-card:nth-child(2) .case-quote { border-left-color: var(--orange); }
+.case-card:nth-child(3) .case-quote { border-left-color: var(--green); }
+.case-quote-author {
+  font-size: 12px; color: var(--gray-400); font-style: normal;
+  margin-top: 8px; font-weight: 600;
+}
+
+/* ===== Pricing ===== */
+.pricing-header { text-align: center; margin-bottom: 72px; }
+.pricing-header .section-desc { margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.pricing-card {
+  background: #fff; border-radius: var(--radius-lg); padding: 40px;
+  border: 2px solid var(--gray-200); transition: all 0.3s ease; display: flex; flex-direction: column;
+}
+.pricing-card.featured {
+  border-color: var(--blue); position: relative;
+  box-shadow: 0 8px 40px rgba(51,102,255,0.12);
+}
+.pricing-card.featured::before {
+  content: '推荐'; position: absolute; top: -1px; right: 32px;
+  background: var(--blue); color: #fff; padding: 4px 16px;
+  border-radius: 0 0 8px 8px; font-size: 12px; font-weight: 700;
+}
+.pricing-card:hover { transform: translateY(-4px); }
+.pricing-name { font-size: 14px; font-weight: 700; letter-spacing: 1px; color: var(--gray-400); margin-bottom: 8px; }
+.pricing-title { font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.pricing-desc { font-size: 14px; color: var(--gray-600); margin-bottom: 24px; line-height: 1.6; }
+.pricing-price {
+  font-size: 14px; color: var(--gray-600); margin-bottom: 32px;
+  padding-bottom: 32px; border-bottom: 1px solid var(--gray-200);
+}
+.pricing-price strong { font-size: 36px; font-weight: 800; color: var(--gray-900); letter-spacing: -1px; }
+.pricing-price .price-sub { font-size: 13px; color: var(--green); font-weight: 600; display: block; margin-top: 4px; }
+.pricing-features { list-style: none; flex: 1; margin-bottom: 32px; }
+.pricing-features li {
+  font-size: 14px; color: var(--gray-600); padding: 8px 0;
+  display: flex; align-items: center; gap: 10px;
+}
+.pricing-features li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 13px; }
+.pricing-btn {
+  width: 100%; padding: 14px; border-radius: 12px;
+  font-size: 15px; font-weight: 600; text-align: center; transition: all 0.3s; display: block;
+}
+.pricing-btn-outline { background: var(--gray-100); color: var(--gray-800); }
+.pricing-btn-outline:hover { background: var(--gray-200); }
+.pricing-btn-primary {
+  background: var(--blue); color: #fff; box-shadow: 0 4px 15px rgba(51,102,255,0.3);
+}
+.pricing-btn-primary:hover { background: var(--blue-dark); box-shadow: 0 8px 25px rgba(51,102,255,0.4); }
+.pricing-btn-green {
+  background: var(--green); color: #fff; box-shadow: 0 4px 15px rgba(0,196,140,0.3);
+}
+.pricing-btn-green:hover { background: #00A876; box-shadow: 0 8px 25px rgba(0,196,140,0.4); }
+
+/* ===== Steps ===== */
+.steps { background: var(--gray-50); }
+.steps-header { text-align: center; margin-bottom: 72px; }
+.steps-header .section-desc { margin: 0 auto; }
+.steps-track {
+  display: grid; grid-template-columns: repeat(5, 1fr); gap: 0;
+  position: relative; max-width: 1000px; margin: 0 auto;
+}
+.steps-track::before {
+  content: ''; position: absolute; top: 36px; left: 10%; right: 10%;
+  height: 3px; background: var(--gray-200); z-index: 0;
+}
+.step-item { text-align: center; position: relative; z-index: 1; }
+.step-number {
+  width: 72px; height: 72px; border-radius: 50%; background: #fff;
+  border: 3px solid var(--blue); display: flex; align-items: center; justify-content: center;
+  font-size: 24px; font-weight: 800; color: var(--blue);
+  margin: 0 auto 20px; box-shadow: 0 4px 15px rgba(51,102,255,0.15);
+}
+.step-item:nth-child(2) .step-number { border-color: var(--orange); color: var(--orange); box-shadow: 0 4px 15px rgba(255,107,53,0.15); }
+.step-item:nth-child(3) .step-number { border-color: var(--green); color: var(--green); box-shadow: 0 4px 15px rgba(0,196,140,0.15); }
+.step-item:nth-child(4) .step-number { border-color: var(--purple); color: var(--purple); box-shadow: 0 4px 15px rgba(123,97,255,0.15); }
+.step-item:nth-child(5) .step-number { border-color: #FF4081; color: #FF4081; box-shadow: 0 4px 15px rgba(255,64,129,0.15); }
+.step-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.step-desc { font-size: 13px; color: var(--gray-600); line-height: 1.6; padding: 0 8px; }
+
+/* ===== CTA ===== */
+.cta-section {
+  background: linear-gradient(135deg, #2952CC 0%, #3366FF 50%, #5B8DEF 100%);
+  text-align: center; padding: 100px 0;
+}
+.cta-section .section-title { color: #fff; }
+.cta-section .section-desc { color: rgba(255,255,255,0.8); margin: 0 auto 40px; }
+.cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.cta-btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: var(--blue); padding: 16px 36px; border-radius: 50px;
+  font-size: 16px; font-weight: 700; transition: all 0.3s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+.cta-btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.2); }
+.cta-btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent; color: #fff; padding: 16px 36px; border-radius: 50px;
+  font-size: 16px; font-weight: 600; border: 2px solid rgba(255,255,255,0.4); transition: all 0.3s;
+}
+.cta-btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,0.1); }
+
+/* ===== Footer ===== */
+.footer { background: var(--gray-900); color: rgba(255,255,255,0.6); padding: 64px 0 32px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
+.footer-brand h3 { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+.footer-brand p { font-size: 14px; line-height: 1.7; max-width: 300px; }
+.footer-col h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 16px; }
+.footer-col a { display: block; font-size: 14px; padding: 4px 0; color: rgba(255,255,255,0.5); transition: color 0.2s; }
+.footer-col a:hover { color: #fff; }
+.footer-bottom {
+  padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px; text-align: center;
+}
+
+/* ===== Animations ===== */
+.fade-up { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.fade-up.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== Responsive ===== */
+@media (max-width: 900px) {
+  .hero-title { font-size: 36px; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .features-grid, .solutions-grid, .cases-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .steps-track { grid-template-columns: 1fr; gap: 32px; }
+  .steps-track::before { display: none; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .section { padding: 80px 0; }
+  .section-title { font-size: 32px; }
+  .container { padding: 0 20px; }
+  .nav-links { display: none; }
+  .hero-actions { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">D</div>
+      数字人直播
+    </a>
+    <div class="nav-links">
+      <a href="#solutions">解决方案</a>
+      <a href="#features">产品能力</a>
+      <a href="#cases">客户案例</a>
+      <a href="#pricing">版本价格</a>
+      <a href="#steps">开播指引</a>
+      <a href="#cta" class="nav-cta">免费体验</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero：文案改为结果导向 -->
+<section class="hero" id="hero">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">美团数字人直播 全新升级</div>
+      <h1 class="hero-title">让每家店都有<br>自己的 <span>24 小时主播</span></h1>
+      <p class="hero-subtitle">直播成本降低 65%，曝光提升 60%，不用招人不用盯。<br>3 分钟开播，AI 帮你从早播到晚。</p>
+      <div class="hero-actions">
+        <a href="#cta" class="btn-primary">免费体验 →</a>
+        <a href="#solutions" class="btn-outline">找到我的方案 ↓</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-card fade-up">
+          <div class="stat-number">-65%</div>
+          <div class="stat-label">直播运营成本</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number">+75%</div>
+          <div class="stat-label">日均直播时长</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number">3 min</div>
+          <div class="stat-label">从零到开播</div>
+        </div>
+        <div class="stat-card fade-up">
+          <div class="stat-number">300+</div>
+          <div class="stat-label">真人形象可选</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Solutions：提前到产品能力之前，加入「开播简单」暗示 -->
+<section class="section" id="solutions">
+  <div class="container">
+    <div class="solutions-header">
+      <div class="section-label">解决方案</div>
+      <h2 class="section-title">找到你的方案，立刻开播</h2>
+      <p class="section-desc">不管你是连锁品牌还是社区小店，都有一套为你量身定制的数字人直播方案。</p>
+    </div>
+    <div class="solutions-grid">
+      <div class="solution-card fade-up">
+        <div class="solution-visual">🏢</div>
+        <div class="solution-body">
+          <div class="solution-type">品牌商家</div>
+          <h3>高品质品牌直播间</h3>
+          <p class="solution-pain">投入大、主播管理难、品牌调性难统一？高阶版数字人帮你打造与品牌完美匹配的专属直播间。</p>
+          <div class="solution-highlights">
+            <div class="solution-highlight">1:1 无损复刻品牌主播形象</div>
+            <div class="solution-highlight">品牌专属直播间装修定制</div>
+            <div class="solution-highlight">全套 AI 智能互动能力</div>
+            <div class="solution-highlight">专属运营服务支持</div>
+          </div>
+          <a href="#cta" class="solution-link">了解详情 →</a>
+          <div class="solution-ease">专属顾问 1 对 1 搭建</div>
+        </div>
+      </div>
+      <div class="solution-card fade-up">
+        <div class="solution-visual">🏪</div>
+        <div class="solution-body">
+          <div class="solution-type">特色门店</div>
+          <h3>门店实景特色直播</h3>
+          <p class="solution-pain">想播但没人、没场地、不会运营？实景定制方案让你的门店特色在直播间完美呈现。</p>
+          <div class="solution-highlights">
+            <div class="solution-highlight">门店实景定制直播背景</div>
+            <div class="solution-highlight">AI 自动挖掘门店卖点</div>
+            <div class="solution-highlight">智能文案一键生成</div>
+            <div class="solution-highlight">30 分钟完成直播间搭建</div>
+          </div>
+          <a href="#cta" class="solution-link">了解详情 →</a>
+          <div class="solution-ease">30 分钟搭建完成</div>
+        </div>
+      </div>
+      <div class="solution-card fade-up">
+        <div class="solution-visual">🛒</div>
+        <div class="solution-body">
+          <div class="solution-type">本土商家</div>
+          <h3>零门槛轻松开播</h3>
+          <p class="solution-pain">预算有限、不懂直播？基础版数字人 3 分钟开播，模板装修一键搞定，让直播变得像发朋友圈一样简单。</p>
+          <div class="solution-highlights">
+            <div class="solution-highlight">3 分钟极速开播</div>
+            <div class="solution-highlight">海量模板一键装修</div>
+            <div class="solution-highlight">AI 自动生成讲解内容</div>
+            <div class="solution-highlight">超低成本入门</div>
+          </div>
+          <a href="#cta" class="solution-link">了解详情 →</a>
+          <div class="solution-ease">3 分钟即可开播</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features：移到解决方案之后 -->
+<section class="features section" id="features">
+  <div class="container">
+    <div class="features-header">
+      <div class="section-label">产品能力</div>
+      <h2 class="section-title">AI 驱动，全方位赋能直播</h2>
+      <p class="section-desc">从主播形象到智能互动，一站式解决直播全链路需求，让数字人直播像真人一样专业、自然。</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card fade-up">
+        <div class="feature-icon">👤</div>
+        <h3>海量主播形象</h3>
+        <p>300+ 真人形象库，覆盖男女各年龄段，适配优雅、甜美、运动、商务等多样风格。支持 1:1 真人复刻和门店实景定制，打造品牌专属主播。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">真人形象库</span>
+          <span class="feature-tag">1:1 复刻</span>
+          <span class="feature-tag">实景定制</span>
+          <span class="feature-tag">四季场景</span>
+        </div>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">📝</div>
+        <h3>智能直播内容</h3>
+        <p>AI 自动生成讲解文案，智能挖掘门店特色卖点，支持多商品轮播讲解。不用写稿，AI 帮你讲出每道菜、每件商品的亮点。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">AI 文案</span>
+          <span class="feature-tag">卖点挖掘</span>
+          <span class="feature-tag">多品轮播</span>
+          <span class="feature-tag">声音克隆</span>
+        </div>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">💬</div>
+        <h3>实时智能互动</h3>
+        <p>AI 实时回复观众提问，智能助播配合主播节奏，自动切换镜头画面。像真人一样与观众互动，提升直播间活跃度和转化率。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">AI 问答</span>
+          <span class="feature-tag">智能助播</span>
+          <span class="feature-tag">自动切镜</span>
+          <span class="feature-tag">弹幕互动</span>
+        </div>
+      </div>
+      <div class="feature-card fade-up">
+        <div class="feature-icon">🎨</div>
+        <h3>一键直播间装修</h3>
+        <p>201+ 精美模板一键换装，支持节日氛围自动切换、爆品专场、异形热点等特色玩法。不用设计师，直播间也能好看又吸睛。</p>
+        <div class="feature-tags">
+          <span class="feature-tag">模板装修</span>
+          <span class="feature-tag">节日氛围</span>
+          <span class="feature-tag">品牌定制</span>
+          <span class="feature-tag">异形热点</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cases：增加商家引用语 -->
+<section class="cases section" id="cases">
+  <div class="container">
+    <div class="cases-header">
+      <div class="section-label">客户案例</div>
+      <h2 class="section-title">真实效果，数据说话</h2>
+      <p class="section-desc">来自不同行业的商家，通过数字人直播实现了直播时长、转化率和收益的显著提升。</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card fade-up">
+        <div class="case-industry">品牌餐饮</div>
+        <h3>知名连锁品牌 · 无损复刻方案</h3>
+        <div class="case-metrics">
+          <div>
+            <div class="case-metric-value">24h</div>
+            <div class="case-metric-label">不间断直播</div>
+          </div>
+          <div>
+            <div class="case-metric-value">-65%</div>
+            <div class="case-metric-label">投次比成本</div>
+          </div>
+        </div>
+        <div class="case-quote">
+          "以前每天只能播 4 小时，现在 24 小时都在播，成本还降了一半多。数字人主播比真人稳定太多了。"
+          <div class="case-quote-author">— 某连锁品牌运营负责人</div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <div class="case-industry">特色门店</div>
+        <h3>本地特色餐厅 · 实景定制方案</h3>
+        <div class="case-metrics">
+          <div>
+            <div class="case-metric-value">+45%</div>
+            <div class="case-metric-label">直播转化率</div>
+          </div>
+          <div>
+            <div class="case-metric-value">30min</div>
+            <div class="case-metric-label">搭建直播间</div>
+          </div>
+        </div>
+        <div class="case-quote">
+          "把我们店的实景搬到了直播间里，客人看着就想来。转化率比之前纯图片直播高了快一半。"
+          <div class="case-quote-author">— 某特色餐厅店主</div>
+        </div>
+      </div>
+      <div class="case-card fade-up">
+        <div class="case-industry">本地零售</div>
+        <h3>社区商家 · 物料托管方案</h3>
+        <div class="case-metrics">
+          <div>
+            <div class="case-metric-value">+60%</div>
+            <div class="case-metric-label">曝光提升</div>
+          </div>
+          <div>
+            <div class="case-metric-value">3min</div>
+            <div class="case-metric-label">开播耗时</div>
+          </div>
+        </div>
+        <div class="case-quote">
+          "我一个人开店，根本没时间直播。现在 3 分钟设置好就不用管了，曝光量涨了六成。"
+          <div class="case-quote-author">— 某社区便利店老板</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing：突出免费试用入口 -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div class="section-label">版本价格</div>
+      <h2 class="section-title">选择适合你的方案</h2>
+      <p class="section-desc">从零门槛入门到品牌深度定制，灵活选择最匹配你需求的版本。</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">入门版</div>
+        <div class="pricing-title">智能云播</div>
+        <div class="pricing-desc">适合本土商家，零基础也能快速开播，用最低成本开启数字人直播。</div>
+        <div class="pricing-price">
+          <strong>免费</strong> 开始使用
+          <span class="price-sub">无需绑卡，注册即用</span>
+        </div>
+        <ul class="pricing-features">
+          <li>基础数字人形象库</li>
+          <li>模板化直播间装修</li>
+          <li>AI 自动生成讲解文案</li>
+          <li>基础数据看板</li>
+          <li>3 分钟快速开播</li>
+        </ul>
+        <a href="#cta" class="pricing-btn pricing-btn-green">立即免费开播</a>
+      </div>
+      <div class="pricing-card featured fade-up">
+        <div class="pricing-name">进阶版</div>
+        <div class="pricing-title">轻享版</div>
+        <div class="pricing-desc">适合特色门店，更丰富的形象和智能能力，让直播更有特色和吸引力。</div>
+        <div class="pricing-price">
+          <strong>¥999</strong> /月起
+          <span class="price-sub">含 7 天免费试用</span>
+        </div>
+        <ul class="pricing-features">
+          <li>全量数字人形象库</li>
+          <li>门店实景定制背景</li>
+          <li>AI 智能文案 + 卖点挖掘</li>
+          <li>智能问答互动</li>
+          <li>AI 助播 + 自动切镜</li>
+          <li>详细数据分析报告</li>
+        </ul>
+        <a href="#cta" class="pricing-btn pricing-btn-primary">免费试用 7 天</a>
+      </div>
+      <div class="pricing-card fade-up">
+        <div class="pricing-name">旗舰版</div>
+        <div class="pricing-title">高阶版</div>
+        <div class="pricing-desc">适合品牌商家，1:1 复刻 + 全套定制 + 专属服务，打造品牌级数字人直播间。</div>
+        <div class="pricing-price">
+          <strong>¥4999</strong> /月起
+          <span class="price-sub">支持按季度/年付优惠</span>
+        </div>
+        <ul class="pricing-features">
+          <li>1:1 真人主播无损复刻</li>
+          <li>品牌专属直播间定制</li>
+          <li>声音克隆 + 形象定制</li>
+          <li>全套 AI 智能交互能力</li>
+          <li>品牌元素深度融合</li>
+          <li>专属运营顾问服务</li>
+          <li>一站式运营托管</li>
+        </ul>
+        <a href="#cta" class="pricing-btn pricing-btn-outline">预约演示</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Steps -->
+<section class="steps section" id="steps">
+  <div class="container">
+    <div class="steps-header">
+      <div class="section-label">开播指引</div>
+      <h2 class="section-title">5 步开启数字人直播</h2>
+      <p class="section-desc">从注册到开播，最快只需 3 分钟。跟着步骤走，轻松拥有你的专属数字人主播。</p>
+    </div>
+    <div class="steps-track">
+      <div class="step-item fade-up">
+        <div class="step-number">1</div>
+        <div class="step-title">注册登录</div>
+        <div class="step-desc">在美团商家端完成注册，进入数字人直播后台</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-number">2</div>
+        <div class="step-title">选择形象</div>
+        <div class="step-desc">从 300+ 形象库中挑选最适合你品牌风格的数字人主播</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-number">3</div>
+        <div class="step-title">装修直播间</div>
+        <div class="step-desc">一键套用模板或自定义装修，打造专属直播间视觉</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-number">4</div>
+        <div class="step-title">配置内容</div>
+        <div class="step-desc">AI 自动生成讲解文案，设置商品轮播和互动规则</div>
+      </div>
+      <div class="step-item fade-up">
+        <div class="step-number">5</div>
+        <div class="step-title">一键开播</div>
+        <div class="step-desc">确认预览效果，点击开播，数字人主播即刻上线</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <h2 class="section-title">准备好开启数字人直播了吗？</h2>
+    <p class="section-desc">3 分钟开播，7×24 小时不间断，让你的店铺直播永不打烊。</p>
+    <div class="cta-actions">
+      <a href="#" class="cta-btn-white">免费开始使用 →</a>
+      <a href="#" class="cta-btn-ghost">预约 1 对 1 演示</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>
+          <span style="width:28px;height:28px;background:var(--blue);border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:#fff;font-size:14px;font-weight:800;">D</span>
+          美团数字人直播
+        </h3>
+        <p>通过 AI 技术赋能本地生活商家，让每家店都能拥有专业、稳定、低成本的 24 小时直播能力。</p>
+      </div>
+      <div class="footer-col">
+        <h4>产品</h4>
+        <a href="#solutions">解决方案</a>
+        <a href="#features">产品能力</a>
+        <a href="#pricing">版本价格</a>
+        <a href="#steps">开播指引</a>
+      </div>
+      <div class="footer-col">
+        <h4>资源</h4>
+        <a href="#">帮助中心</a>
+        <a href="#">操作文档</a>
+        <a href="#">常见问题</a>
+        <a href="#">更新日志</a>
+      </div>
+      <div class="footer-col">
+        <h4>联系我们</h4>
+        <a href="#">商务合作</a>
+        <a href="#">技术支持</a>
+        <a href="#">意见反馈</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 美团 · 数字人直播  All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<!-- Scroll Animation Script -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Nav scroll effect
+const nav = document.querySelector('.nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) {
+    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.08)';
+  } else {
+    nav.style.boxShadow = 'none';
+  }
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
